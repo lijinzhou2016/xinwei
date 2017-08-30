@@ -1,0 +1,36 @@
+adb help
+adb version
+
+adb start-server
+adb kill-server
+
+adb devices
+adb devices -l
+adb connect <host> [:<port>]
+adb connect <host> [:<port>]
+
+adb root
+adb reboot
+adb -s <device-serial> <cmd>
+
+adb pull
+adb push
+
+adb install <apk-filepath>
+adb uninstall 
+
+adb shell
+adb shell cat /proc/meminfo         # 内存信息
+adb shell top -m 1 -n 1 -s cpu      # cup信息
+adb shell am start -n com.android.calculator2/.Calculator       # 启动app
+adb shell am force-stop com.android.calculator2                 # 强制终止app
+adb shell pm list packages [ -f ]                               # 列出所有包名，-f 带路径
+adb shell dumpsys package com.android.calculator2               # 获取app包信息
+adb shell settings put system screen_brightness 150             # 设置屏幕亮度
+adb shell setttings put system screen_off_timeout 2147483647    # 设置屏幕常量
+adb shell uiautomator dump                                      # 获取当前界面xml布局
+adb shell screencap -p /sdcard/screen.png                       # 截屏
+adb shell am start -a android.intent.action.VIEW -d  http://www.baidu.com/      # 访问百度
+adb shell am start -a android.intent.action.CALL -d tel:10086                   # 拨打10086
+adb shell dumpsys activity > d:\log.txt                                         # activity信息
+
