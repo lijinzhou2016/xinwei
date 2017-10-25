@@ -13,7 +13,7 @@ adb root
 adb reboot
 adb -s <device-serial> <cmd>
 
-adb pull
+adb pull 
 adb push
 
 adb install <apk-filepath>

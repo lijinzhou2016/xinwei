@@ -8,6 +8,7 @@
 """
 
 from uiautomator import Device
+import time
 
 driver = Device()
 
@@ -16,10 +17,11 @@ calculator_package = "com.android.calculator2"
 calculator_activity = ".Calculator"
 
 # 启动计算器
-#driver.shell_adb("shell am start -n 'com.android.calculator2/.Calculator'")
-driver.start_activity(calculator_package, calculator_activity)
+driver.shell_adb("shell am start -n 'com.android.calculator2/.Calculator'")
+# driver.start_activity(calculator_package, calculator_activity)
 driver.delay(3)
-
+time.sleep(2)
+# driver(text="1").click()
 driver(resourceId="com.android.calculator2:id/digit_1").click()  # click 1
 driver.delay(1)
 driver(resourceId="com.android.calculator2:id/op_add").click()  # click +
@@ -32,6 +34,7 @@ driver.delay(3)
 if driver(resourceId="com.android.calculator2:id/formula").get_text() == "3":
     print "success"
 else:
-    print "faile"
+    print "failed"
 
 driver.press.home()
+# driver.press.back()

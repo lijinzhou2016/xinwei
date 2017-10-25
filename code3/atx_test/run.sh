@@ -1,0 +1,2 @@
+python -m unittest calculator.AndroidTestCases.test_one_plus_two
+python -m unittest calculator.AndroidTestCases.test_click_imgage

@@ -1,0 +1,4 @@
+DEBUG 2017-10-17 19:22:58,444 [ calculator.py, calculator, start_app, line:25 ] - start cal success
+DEBUG 2017-10-17 19:22:58,445 [ calculator.py, calculator, test_click_imgage, line:107 ] - click the image 1
+DEBUG 2017-10-17 19:23:02,352 [ calculator.py, calculator, clear, line:77 ] - clear success
+DEBUG 2017-10-17 19:23:09,499 [ calculator.py, calculator, exit_app, line:66 ] - exit cal success

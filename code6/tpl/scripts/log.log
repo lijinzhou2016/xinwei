@@ -1,0 +1,2 @@
+DEBUG 2017-10-24 21:39:36,031 [ apk_live.py, apk_live, switch, line:25 ] - light already on
+DEBUG 2017-10-24 21:39:52,673 [ apk_live.py, apk_live, switch, line:44 ] - turn off success

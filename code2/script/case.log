@@ -1,0 +1,9 @@
+DEBUG 2017-08-31 18:53:25,738 [ calculator.py, calculator, start_app, line:27 ] - start cal success
+DEBUG 2017-08-31 18:53:25,759 [ calculator.py, calculator, clear, line:82 ] - clear success
+DEBUG 2017-08-31 18:53:26,783 [ calculator.py, calculator, cal_two_number, line:45 ] - Input 5 success
+DEBUG 2017-08-31 18:53:27,801 [ calculator.py, calculator, cal_two_number, line:45 ] - Input × success
+DEBUG 2017-08-31 18:53:28,835 [ calculator.py, calculator, cal_two_number, line:45 ] - Input 3 success
+[1;32mINFO 2017-08-31 18:53:28,859 [ calculator.py, calculator, cal_two_number, line:54 ] - Expect: 15[1;0m
+[1;32mINFO 2017-08-31 18:53:30,893 [ calculator.py, calculator, cal_two_number, line:59 ] - Result: 15 - Success[1;0m
+DEBUG 2017-08-31 18:53:31,933 [ calculator.py, calculator, clear, line:82 ] - clear success
+DEBUG 2017-08-31 18:53:37,771 [ calculator.py, calculator, exit_app, line:71 ] - exit cal success
