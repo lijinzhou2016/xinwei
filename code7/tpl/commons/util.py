@@ -24,6 +24,31 @@ class Util(object):
     def get_logger(self):
         return self._logger
 
+    def get_bouns(self, obj):
+        return self.get_status(obj, "bounds")
+
+    def _get_element_point(self, obj, point):
+        data = self.get_bouns(obj)
+        return data.get(point)
+
+    def get_element_top_y(self, obj):
+        return self._get_element_point(obj, "top")
+
+    def get_element_bottom_y(self, obj):
+        return self._get_element_point(obj, "bottom")
+
+    def get_element_left_x(self, obj):
+        return self._get_element_point(obj, "left")
+
+    def get_element_right_x(self, obj):
+        return self._get_element_point(obj, "right")
+
+    def get_element_center_x(self, obj):
+        return (self.get_element_center_x(obj) + self.get_element_right_x)/2
+
+    def get_element_center_y(self, obj):
+        return (self.get_element_bottom_y(obj) + self.get_element_top_y)/2
+
     def is_package_exists(self, app_package, timeout=3000):
         if self._driver(packageName=app_package).wait.exists(timeout=timeout):
             return True
