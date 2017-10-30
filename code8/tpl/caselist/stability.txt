@@ -1,0 +1,2 @@
+calculator.Cases.test_one_plus_two,100  
+calculator.Cases.test_one_plus_one,100
