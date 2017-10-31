@@ -28,7 +28,8 @@ class Util(object):
         return self.get_status(obj, "bounds")
 
     def _get_element_point(self, obj, point):
-        return self.get_bouns(obj).get(point)
+        bounds = self.get_bouns(obj)
+        return bounds.get(point)
 
     def get_element_top_y(self, obj):
         return self._get_element_point(obj, "top")
@@ -43,7 +44,7 @@ class Util(object):
         return self._get_element_point(obj, "right")
 
     def get_element_center_x(self, obj):
-        return (self.get_element_center_x(obj) + self.get_element_right_x(obj))/2
+        return (self.get_element_left_x(obj) + self.get_element_right_x(obj))/2
 
     def get_element_center_y(self, obj):
         return (self.get_element_bottom_y(obj) + self.get_element_top_y(obj))/2
@@ -103,5 +104,13 @@ class Util(object):
         """
         return objs.info.get(status_key)
     
+if __name__ == "__main__":
+    d= Util()
+    # u.start_app("com.android.contacts")
+    obj = d._driver(text="Contacts")
+    print d.get_status(obj, "bounds")
+    print d.get_bouns(obj)
 
-    
+    print d.get_element_bottom_y(obj)
+    x= d.get_element_center_x(obj)
+    print x
