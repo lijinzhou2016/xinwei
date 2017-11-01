@@ -17,7 +17,7 @@ import setting
 case_file = os.path.join(CASES_LIST_PATH, setting.CASES_LIST)
 start_time = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
 case_lines = ''
-log_root_path = os.path.join(setting.LOG_PATH,  )
+log_root_path = os.path.join(setting.LOG_PATH, , start_time)
 
 os.environ.setdefault("base_path", BASE_PATH)
 
