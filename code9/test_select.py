@@ -1,5 +1,5 @@
 import pymysql
-# pymysql.install_as_MySQLdb()
+
 conn = pymysql.connect(
     host = "127.0.0.1",
     port = 3306,
@@ -7,17 +7,21 @@ conn = pymysql.connect(
     passwd = "123456",
     db = "hello",
 )
-
 cursor = conn.cursor()
-
 sql = "select * from user"
 
 cursor.execute(sql)
-
 rs = cursor.fetchall()
+print rs
+# for user in rs:
+#     print user[0], user[1]
 
-for row in rs:
-    print "userid={0}, username={1}".format(row[0], row[1])
+
+# rs = cursor.fetchone()
+# print rs
+
+# rs = cursor.fetchmany(2)
+# print rs
 
 cursor.close()
 conn.close()

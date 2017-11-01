@@ -10,19 +10,18 @@ conn = pymysql.connect(
 
 cursor = conn.cursor()
 
-sql_insert = "insert into user(userid, username) values(10, 'name10')"
-sql_update = "update user set username = 'zhangsan' where userid=2"
+sql_insert = "insert into user(userid, username) values(4, 'name4')"
+sql_update = "update user set username = 'zhangsan' where userid=3"
 sql_delete = "delete from user where userid<3"
-try:
-    cursor.execute(sql_insert)
-    print cursor.rowcount
-    cursor.execute(sql_update)
-    print cursor.rowcount
-    cursor.execute(sql_delete)
-    print cursor.rowcount
-    conn.commit()
-except BaseException,e:
-    print e 
-    conn.rollback()
+
+
+cursor.execute(sql_insert)
+print cursor.rowcount
+cursor.execute(sql_update)
+print cursor.rowcount
+cursor.execute(sql_delete)
+print cursor.rowcount
+conn.commit()
+
 cursor.close()
 conn.close()
