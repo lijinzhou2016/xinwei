@@ -50,7 +50,6 @@ class Common(Util):
             return False
 
 
-
     def time_set(self):
         """设置系统时间
 
@@ -81,6 +80,7 @@ class Common(Util):
         self._driver(text="确定").click()
         self._driver.delay(1)
 
+
         # 修改时间
         self._driver(text="时间").click()
         self._driver.delay(1)
@@ -100,21 +100,84 @@ class Common(Util):
             return False
 
         if self.switch_auto_time("on"):
+            # 可能有问题
             self._driver(className="android.widget.ImageView").click()
             self._driver.delay(1)
             return True 
         else:
             return False
 
-
-
-
     
     def screen_rotate(self):
         pass
 
     def timer_power(self):
-        pass
+        self._driver(text="定时开关机").click()
+        self._driver.delay(1)
+        if self._driver(text="常开").wait.exists(timeout=3000):
+            self._logger.debug("enter  timer power view success")
+        else:
+            self._logger.error("enter  timer power view failed")
+            return False
+        
+        # 完善，判断
+        self._driver(text="统一").click()
+        self._driver.delay(1)
+        self._driver(text="定时").click()
+        self._driver.delay(1)
+
+        # 获取系统时间
+        t = self._driver(resourceId="com.signway.assist:id/activity_time").text
+        h = t.split(":")[0]
+        m = t.split(":")[1]
+
+        self._driver(text="开启").click()
+        self._driver.delay(1)
+        self._driver(text="开始时间").click()
+        self._driver.delay(1)
+
+        for loop in range(int(h)):
+            self._driver(resourceId="com.signway.assist:id/add").click()
+        
+        for loop in range(int(m)+5):
+            self._driver(resourceId="com.signway.assist:id/add", instance=1).click()
+
+        self._driver(text="确定").click()
+        self._driver.delay(1)
+
+        self._driver(className="android.widget.ImageView").click()
+        self._driver.delay(1)
+        self._driver(className="android.widget.ImageView").click()
+        self._driver.delay(1)
+        self._driver.press.home()
+
+        # 等待关机
+        t = 10*60
+        for i in range(t):
+            time.sleep(1)
+            try:
+                self._driver.adb_shell("adb devices")
+            except BaseException as e:
+                self._logger.debug("正在关闭。。。。")
+                break
+
+        for i in range(t):
+            time.sleep(1)
+            try:
+                os.system("adb connect 192.168.0.133:5566")
+                time.sleep(1)
+                self._driver.adb_shell("adb devices")
+                self.start_assistant()
+                time.sleep(1)
+                tt = self._driver(resourceId="com.signway.assist:id/activity_time").text
+                print tt
+                return
+                # if int(tt.split(":")[1]) - int(t.split(":")[1]) == 5
+            except BaseException as e:
+                pass
+
+
+
 
     def system_set(self):
         pass
@@ -177,19 +240,20 @@ class Cases(unittest.TestCase):
         self._driver.press.home()
 
     def test_menus(self):
-        if not self._common.start_assistant():
+        if self._common.start_assistant() == False:
             self._common.save_image()
             return
+        self._common.timer_power()
 
-        if not self._common.time_set():
-            self._common.save_image()
-            return
+        # if not self._common.time_set():
+        #     self._common.save_image()
+        #     return
 
-        if not self._common.setup_lvds(model="Normal", pipe="单", rgb="8bit", change_pipe="noswap", bk_light="低"):
-            self._common.save_image()
-            return
+        # if not self._common.setup_lvds(model="Normal", pipe="单", rgb="8bit", change_pipe="noswap", bk_light="低"):
+        #     self._common.save_image()
+        #     return
 
-        if not self._common.setup_lvds(model="Jeida", pipe="双", rgb="6bit", change_pipe="swap", bk_light="高"):
-            self._common.save_image()
-            return
+        # if not self._common.setup_lvds(model="Jeida", pipe="双", rgb="6bit", change_pipe="swap", bk_light="高"):
+        #     self._common.save_image()
+        #     return
 
