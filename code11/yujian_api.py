@@ -44,6 +44,8 @@ class Cases(unittest.TestCase):
 
         self._driver.press.volume_down()
         self._driver.delay(1)
+        self._driver.press.volume_down()
+        self._driver.delay(1)
         self._driver.press.volume_up()
         self._driver.delay(1)
 
@@ -78,27 +80,38 @@ class Cases(unittest.TestCase):
             print "it gone"
 
     def test_child(self):
-        self._driver(resourceId="com.android.launcher3:id/hotseat").child(text="Phone").click()
+        self._driver(className="android.view.ViewGroup").child(text="Phone").click()
         self._driver.delay(1)
         self._driver.press("home")
         self._driver.delay(1)
+
         self._driver(text="Phone").click()
         self._driver.delay(1)
         self._driver.press("back")
 
     def test_instance(self):
         # count, instance
-        count = self._driver(className="android.widget.TextView").count
-        print count
-        self._driver(className="android.widget.TextView", instance=5).click()
-        self._driver.press.home()
-        self._driver.delay(1)
-        self._driver(className="android.widget.TextView")[5].click()
+        # count = self._driver(className="android.widget.TextView").count
+        # print count
+        # self._driver(className="android.widget.TextView", instance=7).click()
+        # self._driver.press.home()
+        # self._driver.delay(1)
+        # self._driver(className="android.widget.TextView")[7].click()
+
+        # 计算器遍历
+        objs = self._driver(className="android.widget.Button")
+        for obj in objs:
+            obj.click()
 
     def test_set_text(self):
-        self._driver(resourceId="com.android.messaging:id/recipient_text_view").set_text("10086")
-        self._driver.delay(1)
-        self._driver(resourceId="com.android.messaging:id/recipient_text_view").clear_text()
+        # self._driver(resourceId="com.android.messaging:id/recipient_text_view").set_text("10086")
+        # self._driver.delay(1)
+        # self._driver.press.enter()
+        # self._driver(resourceId="com.android.messaging:id/recipient_text_view").clear_text()
+        # self._driver.delay(1)
+        # self._driver.type("10086", enter=False)
+
+        self._driver(resourceId="com.android.messaging:id/compose_message_text").long_click()
 
     def test_drag(self):
         self._driver(text="Settings").drag.to(950, 1000)
@@ -106,11 +119,11 @@ class Cases(unittest.TestCase):
         self._driver(text="Settings").swipe.left(steps=100)
         
     def test_swipe(self):
-        self._driver.swipe(1000, 1000, 500, 1000, steps=10)
+        self._driver.swipe(1000, 1000, 500, 1000, steps=50)
         self._driver.delay(1)
         self._driver.swipe(500, 1000, 1000, 1000, steps=10)
         
-    def test_scroll(self):
+    def test_scroll(self): 
         self._driver(scrollable=True).scroll.to(text="Google")
         print "find it"
        
@@ -122,9 +135,9 @@ class Cases(unittest.TestCase):
 
     def test_cmd(self):
         dev = self._driver.adb_cmd("devices")
-        # mem = self._driver.adb_shell("dumpsys meminfo")
+        mem = self._driver.adb_shell("dumpsys meminfo")
         print dev 
-        # print mem
+        print mem
 
     def test_relative(self):
         self._driver(text="Cellular data").right(className="android.widget.Switch").click()

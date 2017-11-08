@@ -27,7 +27,7 @@ def func(*k):
     for i in k:
         print i
 
-# func(1,"char","汉子")
+func(1,"char","汉子")
 
 
 # 内置函数 http://www.runoob.com/python/python-built-in-functions.html
@@ -43,6 +43,6 @@ def my_max(my_list):
             m = n
     return m
 
-# print my_max([1,2,3,4,5,6,4,3,2])
+print my_max([1,2,3,4,5,6,4,3,2])
 # 作业：自己实现 min(), sum()
 
