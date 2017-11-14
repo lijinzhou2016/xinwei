@@ -29,7 +29,7 @@ def check_input(user_input):
         return (True,"exit")
     elif user_input.find("/0")>-1: # 分母为0处理
         return (False,"division is 0")
-    elif re.match(pattern,user_input):
+    elif re.match(pattern, user_input):
         return (True, "")
     else:
         return (False,"input error") # 非法输入处理
