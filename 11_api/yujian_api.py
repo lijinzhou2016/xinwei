@@ -61,9 +61,8 @@ class Cases(unittest.TestCase):
     def test_image(self):
         self._driver.start_app("com.android.calculator2")
         self._driver.delay(2)
-        image_path = os.path.dirname(os.path.abspath(__file__))
-        if self._driver.exists(os.path.join(image_path, "1.jpg")):
-            self._driver.click_image(os.path.join(image_path, "1.jpg"))
+        if self._driver.exists("1.jpg"):
+            self._driver.click_image("1.jpg")
             self._driver.delay(1)
         else:
             print "Not find image"

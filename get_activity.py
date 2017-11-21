@@ -16,4 +16,5 @@ pp_re = re.compile(pp)
 log = p_re.search(log).group(0)
 #print log
 log = pp_re.search(log).group(0).strip()
+print log
 print "adb shell am start -n '%s'" %log
